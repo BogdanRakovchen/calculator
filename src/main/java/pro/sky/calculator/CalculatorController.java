@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(path = "calculator")
+@RequestMapping(path = "/calculator")
 
 public class CalculatorController {
     private final CalculatorServiseImp calculatorServiseImp;
@@ -25,35 +25,51 @@ public class CalculatorController {
     }
 
 
-    @GetMapping(path = "plus")
+    @GetMapping(path = "/plus")
 
     public String sumTwoNumber(
-            @RequestParam(value = "num1") int number_1,
-            @RequestParam(value = "num2") int number_2) {
+            @RequestParam(value = "num1") int number1,
+            @RequestParam(value = "num2") int number2) {
 
-            return calculatorServiseImp.sumTwoNumber(number_1, number_2);
+            int sum;
+            sum = calculatorServiseImp.sumTwoNumber(number1, number2);
+            return  number1 + " + " + number2 + " " + " = " + sum;
 
     }
 
-    @GetMapping(path = "minus")
+    @GetMapping(path = "/minus")
     public String substructTwoNumber(
-            @RequestParam("num1") int number_1,
-            @RequestParam("num2") int number_2) {
-        return calculatorServiseImp.substructTwoNumber(number_1, number_2);
+            @RequestParam("num1") int number1,
+            @RequestParam("num2") int number2) {
+
+        int sum;
+        sum = calculatorServiseImp.substructTwoNumber(number1, number2);
+        return  number1 + " - " + number2 + " " + " = " + sum;
     }
 
-    @GetMapping(path = "multiply")
+    @GetMapping(path = "/multiply")
     public String multiplicationTwoNumber(
-            @RequestParam("num1") int number_1,
-            @RequestParam("num2") int number_2) {
-        return calculatorServiseImp.multiplicationTwoNumber(number_1, number_2);
+            @RequestParam("num1") int number1,
+            @RequestParam("num2") int number2) {
+
+        int sum;
+        sum = calculatorServiseImp.multiplicationTwoNumber(number1, number2);
+        return  number1 + " * " + number2 + " " + " = " + sum;
     }
 
-    @GetMapping(path = "divide")
+    @GetMapping(path = "/divide")
     public String divisionTwoNumber(
-            @RequestParam(value = "num1") int number_1,
-            @RequestParam(value = "num2") int number_2) {
-        return calculatorServiseImp.divisionTwoNumber(number_1, number_2);
+            @RequestParam(value = "num1") int number1,
+            @RequestParam(value = "num2") int number2) {
+
+        if(number2 == 0) {
+            return "Делить на ноль нельзя";
+        }
+
+        int sum;
+        sum = calculatorServiseImp.divisionTwoNumber(number1, number2);
+        return  number1 + " / " + number2 + " " + " = " + sum;
+
     }
 
 }
